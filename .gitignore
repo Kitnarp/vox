@@ -1,0 +1,4 @@
+logs/
+voicecore/model/
+__pycache__/
+*.wav
