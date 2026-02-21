@@ -10,7 +10,8 @@ class CommandFeature(BaseFeature):
 
     def handle_text(self, text: str):
         Command_logger.debug(f"CommandFeature received text: {text}")
-        #self.dispatcher.execute(text)
+        self.dispatcher.execute(text)
     
     def handle_partial(self, text):
-        Command_logger.debug(f"Doing partial...")
+        # Command_logger.debug(f"Doing partial...")
+        return

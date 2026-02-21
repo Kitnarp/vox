@@ -27,13 +27,13 @@ class VoskRecognizer(BaseRecognizer):
 
     #TODO: Come up with a solution for vosk partial.get() sending the trailing words with each calls untill fully trancribed.
     def process_partial(self, indata) -> str | None:
-        data_bytes = indata.tobytes()
-        if not self.recognizer.AcceptWaveform(data_bytes):
-            partial = json.loads(self.recognizer.PartialResult())
-            text = partial.get("partial") or None
-            if text:
-                recognizer_logger.debug(f"Partial transcription: {text}")
-            return text
+        # data_bytes = indata.tobytes()
+        # if not self.recognizer.AcceptWaveform(data_bytes):
+        #     partial = json.loads(self.recognizer.PartialResult())
+        #     text = partial.get("partial") or None
+        #     if text:
+        #         recognizer_logger.debug(f"Partial transcription: {text}")
+        #     return text
         return None
 
     def reset(self):

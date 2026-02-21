@@ -36,7 +36,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 server_logger = setup_logger("server", "server.log", logging.DEBUG)
 voice_logger = setup_logger("voicecore", "voicecore.log", logging.DEBUG)
 audio_logger = setup_logger("voicecore.audio", "audioinput.log", logging.DEBUG)
-recognizer_logger = setup_logger("voicecore.recognizer", "recognizer.log", logging.DEBUG)
+recognizer_logger = setup_logger("voicecore.recognizer", "recognizer.log")
 
 # feature Profiles
 Command_logger = setup_logger("feature.command", "command_feature.log", logging.DEBUG)
