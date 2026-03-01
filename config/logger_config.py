@@ -17,10 +17,10 @@ def setup_logger(name, log_file, level=logging.INFO):
             "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S"
         )
-        # fh = logging.FileHandler(os.path.join(LOG_DIR, log_file))
-        # fh.setLevel(level)
-        # fh.setFormatter(formatter)
-        # logger.addHandler(fh)
+        fh = logging.FileHandler(os.path.join(LOG_DIR, log_file))
+        fh.setLevel(level)
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
 
         # Also log to console for debugging
         ch = logging.StreamHandler()
@@ -37,6 +37,9 @@ server_logger = setup_logger("server", "server.log", logging.DEBUG)
 voice_logger = setup_logger("voicecore", "voicecore.log", logging.DEBUG)
 audio_logger = setup_logger("voicecore.audio", "audioinput.log", logging.DEBUG)
 recognizer_logger = setup_logger("voicecore.recognizer", "recognizer.log")
+
+# Command Registery
+Command_registery = setup_logger("Registery", "Registery.log", logging.DEBUG) 
 
 # feature Profiles
 Command_logger = setup_logger("feature.command", "command_feature.log", logging.DEBUG)

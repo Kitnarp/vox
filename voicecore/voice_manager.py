@@ -6,12 +6,13 @@ from voicecore.vosk_recognizer import VoskRecognizer
 # from voicecore.whisper_recognizer import WhisperRecognizer  # future
 
 class VoiceManager:
-    def __init__(self, recognizer=None, features=None, model_path="models/vosk-model-small-en-us-0.15"):
-        self.audio = AudioInput()
+    def __init__(self, audio_device = None, recognizer=None, features=None, model_path="models/vosk-model-small-en-us-0.15"):
+        self.audio = AudioInput(device=audio_device)
         self.recognizer = recognizer or VoskRecognizer(model_path)
         self.features = features or []
         self.audio.set_callback(self._audio_callback)
         voice_logger.info("VoiceManager initialized.")
+        self.audio.list_devices()
 
     def _audio_callback(self, indata, frames, time, status):
         if status:

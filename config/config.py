@@ -7,4 +7,4 @@ SERVER_PORT = 5000
 MODEL_PATH = "voicecore/model/"
 MODEL_VOSK = "vosk-model-small-en-us-0.15"
 
-COMMANDS_FILE = "commands.json"
+COMMANDS_FILE = "user_commands.json"

@@ -1,3 +1,5 @@
+#voicecore/audio_input.py
+
 import sounddevice as sd
 from config.logger_config import audio_logger
 
@@ -34,3 +36,13 @@ class AudioInput:
             self.stream.close()
             self.stream = None
             audio_logger.info("Audio stream stopped.")
+
+    def list_devices(self):
+        """Print all available audio devices."""
+        for i, dev in enumerate(sd.query_devices()):
+            audio_logger.info(f"{i}: {dev['name']}")
+
+    def set_device(self, device):
+        """Set the audio device by index or name."""
+        self.device = device
+        audio_logger.info(f"Audio device set to: {device}")

@@ -1,14 +1,23 @@
 # voicecore/plugin_loader.py
 import importlib
 import pkgutil
-import voicecore.decorators as decorators
+import sys
+import command_registry as command_registry
 
-def load_plugins(plugin_package="plugins"):
+def load_plugins(plugin_package="plugins", reload=False):
     """
-    Import all modules in the given package (e.g. 'plugins') so their
-    @command decorators run and register handlers.
+    Import all modules in the given package so their @command decorators run.
+    If reload=True, force re-import of modules to pick up changes.
     """
+    # Clear registry before reloading
+    command_registry.clear_registered_commands()
+
     package = importlib.import_module(plugin_package)
     for _, module_name, _ in pkgutil.iter_modules(package.__path__):
-        importlib.import_module(f"{plugin_package}.{module_name}")
-    return decorators.get_registered_commands()
+        full_name = f"{plugin_package}.{module_name}"
+        if reload and full_name in sys.modules:
+            importlib.reload(sys.modules[full_name])
+        else:
+            importlib.import_module(full_name)
+
+    return command_registry.get_registered_commands()

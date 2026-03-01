@@ -1,5 +1,6 @@
 # main.py
 # temporary testing
+
 from config.config import MODEL_PATH, MODEL_VOSK, COMMANDS_FILE
 from voicecore.voice_manager import VoiceManager
 from voicecore.vosk_recognizer import VoskRecognizer
@@ -21,7 +22,7 @@ def main():
     command_feature = CommandFeature(commands_file=COMMANDS_FILE)
 
     # Wire everything into the VoiceManager
-    manager = VoiceManager(model_path=model_path, features=[command_feature])
+    manager = VoiceManager(audio_device= 8, model_path=model_path, features=[command_feature])
 
     try:
         print("🎤 VoiceManager started. Speak a command!")
